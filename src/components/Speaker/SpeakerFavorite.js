@@ -1,12 +1,14 @@
-import React from 'react'
+import React,{useState} from 'react'
 
 const SpeakerFavorite = ({favorite, onFavoriteToggle}) => {
+    const [inTransition, setInTransition] = useState(false)
     function doneCallback(params) {
-        console.log('In parent :done callback')
+        setInTransition(false)
     }
     return (
         <div className='action padB1'>
             <span onClick={function (params) {
+                setInTransition(true)
                 return onFavoriteToggle(doneCallback)
             }}>
                 <i
@@ -14,6 +16,10 @@ const SpeakerFavorite = ({favorite, onFavoriteToggle}) => {
                     ? "fa fa-star orange"
                     : "fa fa-star-o ornage"}></i>{" "}
                 Favorite{" "}
+                {inTransition?
+                    <span className="fa fa-circle-notch fa-spin"></span>    
+                    :null
+                }
             </span>
         </div>
     )
