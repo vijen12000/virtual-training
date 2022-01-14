@@ -40,8 +40,11 @@ const useGenericRequest = (delayTime = 1000, initialData) => {
         async function delayFunction(params) {
             try {
                 await delay(delayTime)
+                
+                if(doneCallback) doneCallback()
+
                 setData(newRecords)
-                doneCallback()
+                
             } catch (error) {
                 console.log(error)
             }
