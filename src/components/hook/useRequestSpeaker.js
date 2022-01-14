@@ -7,7 +7,7 @@ export const REQUEST_STATUS = {
     FAILURE: "failure"
 }
 
-const useRequestSpeaker = (delayTime) => {
+const useRequestSpeaker = (delayTime=1000) => {
     const [speakerData,
         setSpeakerData] = useState([])
     const [requestStatus,
