@@ -1,20 +1,21 @@
 import React from 'react'
 import Speaker from './Speaker'
-import useRequestSpeaker from '../hook/useRequestSpeaker'
+import useRequestSpeaker,{REQUEST_STATUS} from '../hook/useRequestSpeaker'
 
 const SpeakersList = ({showSessions}) => {
     const {
-        speakerData,isLoading,
-        hasErrored,error,
+        speakerData,
+        requestStatus,
+        error,
         onFavoriteToggle
     }=useRequestSpeaker(2000)
         
-    if (hasErrored) 
+    if (requestStatus===REQUEST_STATUS.FAILURE) 
         return <div className="text-danger">Error:
             <b>Loading Speaker Data failed {error}</b>
         </div>
 
-    if (isLoading) 
+    if (requestStatus===REQUEST_STATUS.LOADING) 
         return <div>Loading...</div>
 
     return (
