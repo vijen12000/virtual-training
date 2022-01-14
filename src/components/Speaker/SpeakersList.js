@@ -1,21 +1,17 @@
 import React from 'react'
 import Speaker from './Speaker'
-import useRequestSpeaker,{REQUEST_STATUS} from '../hook/useRequestSpeaker'
+import useGenericRequest, {REQUEST_STATUS} from '../hook/useGenericRequest'
+import {data} from '../../SpeakerData'
 
 const SpeakersList = ({showSessions}) => {
-    const {
-        speakerData,
-        requestStatus,
-        error,
-        onFavoriteToggle
-    }=useRequestSpeaker(2000)
-        
-    if (requestStatus===REQUEST_STATUS.FAILURE) 
+    const {data: speakerData, requestStatus, error, updateRecord} = useGenericRequest(2000, data)
+
+    if (requestStatus === REQUEST_STATUS.FAILURE) 
         return <div className="text-danger">Error:
             <b>Loading Speaker Data failed {error}</b>
         </div>
 
-    if (requestStatus===REQUEST_STATUS.LOADING) 
+    if (requestStatus === REQUEST_STATUS.LOADING) 
         return <div>Loading...</div>
 
     return (
@@ -28,7 +24,10 @@ const SpeakersList = ({showSessions}) => {
                             speaker={speaker}
                             showSessions={showSessions}
                             onFavoriteToggle={() => {
-                            onFavoriteToggle(speaker.id)
+                            updateRecord({
+                             ...speaker,
+                             favorite: !speaker.favorite
+                            })
                         }}/>)
                     })}
 
