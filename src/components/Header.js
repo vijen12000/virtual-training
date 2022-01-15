@@ -1,6 +1,8 @@
-import React from 'react'
+import {ThemeContext} from '../App'
+import {useContext} from 'react'
 
-const Header = ({theme}) => {
+const Header = () => {
+    const {theme} = useContext(ThemeContext)
     return (
         <div className='padT4 padB4'>
             <div className="container mobile-container">
@@ -13,7 +15,10 @@ const Header = ({theme}) => {
                             Sillicon Valley Code Camp
                         </h4>
                     </div>
-                    <div className={theme==="dark"? "text-info" : ""}>
+                    <div
+                        className={theme === "dark"
+                        ? "text-info"
+                        : ""}>
                         Hello Mr. Xyz &nbsp;&nbsp;
                         <span>
                             <a href="#">Sign-Out</a>
