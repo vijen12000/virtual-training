@@ -1,17 +1,14 @@
 import Filter from './Filter';
 import SpeakersList from './Speaker/SpeakersList';
-import React, {useState} from 'react'
+import {SpeakerFilterProvider} from '../components/contexts/SpeakerFilterContext'
 
 const Speakers = ({data}) => {
-    const [showSessions,
-        setShowSessions] = useState(true)
-    return (<> <Filter        
-        showSessions={showSessions}
-        setShowSessions={setShowSessions}/> 
-        <SpeakersList data = {
-        data} 
-            showSessions={showSessions}
-        /> </>)
+    return (
+        <SpeakerFilterProvider initialShowSessions={false}>
+            <Filter/>
+            <SpeakersList data={data}/>
+        </SpeakerFilterProvider>
+    )
 }
 
 export default Speakers

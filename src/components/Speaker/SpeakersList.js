@@ -3,7 +3,7 @@ import Speaker from './Speaker'
 import useGenericRequest, {REQUEST_STATUS} from '../hook/useGenericRequest'
 import {data} from '../../SpeakerData'
 
-const SpeakersList = ({showSessions}) => {
+const SpeakersList = () => {
     const {data: speakerData, requestStatus, error, updateRecord} = useGenericRequest(2000, data)
 
     if (requestStatus === REQUEST_STATUS.FAILURE) 
@@ -21,8 +21,7 @@ const SpeakersList = ({showSessions}) => {
                     .map(function (speaker) {
                         return (<Speaker
                             key={speaker.id}
-                            speaker={speaker}
-                            showSessions={showSessions}
+                            speaker={speaker}                            
                             onFavoriteToggle={(doneCallback) => {
                             updateRecord({
                              ...speaker,
