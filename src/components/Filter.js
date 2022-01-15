@@ -1,4 +1,4 @@
-import {ThemeContext} from '../App'
+import {ThemeContext} from './Layout'
 import React, {useContext} from 'react'
 
 const Filter = ({showSessions, setShowSessions}) => {
