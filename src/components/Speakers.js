@@ -4,7 +4,7 @@ import {SpeakerFilterProvider} from '../components/contexts/SpeakerFilterContext
 
 const Speakers = ({data}) => {
     return (
-        <SpeakerFilterProvider initialShowSessions={false}>
+        <SpeakerFilterProvider initialShowSessions={false} initialEventYear={"2019"}>
             <Filter/>
             <SpeakersList data={data}/>
         </SpeakerFilterProvider>

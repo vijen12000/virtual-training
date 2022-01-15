@@ -3,7 +3,7 @@ import React, {useContext} from 'react'
 import {SpeakerFilterContext} from './contexts/SpeakerFilterContext'
 
 const Filter = () => {
-    const {showSessions, setShowSessions} =useContext(SpeakerFilterContext)
+    const {showSessions, setShowSessions, eventYear, setEventYear, setSearchQuery, EVENT_YEARS} = useContext(SpeakerFilterContext)
     const {theme, setTheme} = useContext(ThemeContext)
     return (
         <section className="toolbar dark-theme-header">
@@ -38,6 +38,36 @@ const Filter = () => {
                                     <option value="dark">Dark</option>
                                 </select>
                             </label>
+                        </li>
+                        <li>
+                            <div className="input-group">
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder='Search'
+                                    onChange={(event) => {
+                                    setSearchQuery(event.target.value)
+                                }}/>
+                                <div className="input-group-append">
+                                    <button className="btn btn-secondary" type='button'>
+                                        <i className="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </li>
+                        <li className='d-flex flex-column flex-md-row'>
+                            <select
+                                className="form-control"
+                                value={eventYear}
+                                onChange={({currentTarget}) => {
+                                setEventYear(currentTarget.value)
+                            }}>
+                                {EVENT_YEARS
+                                    .map(function (year) {
+                                        return <option value={year} key={year}>
+                                            {year}</option>
+                                    })}
+                            </select>
                         </li>
                     </ul>
                 </div>
