@@ -32,6 +32,7 @@ const useGenericRequest = (delayTime = 1000, initialData) => {
     }, [delayTime])
 
     function updateRecord(recordUpdated, doneCallback) {
+        const originalRecords=[...data];
         const newRecords = data.map(function (rec) {
             return rec.id === recordUpdated.id
                 ? recordUpdated
@@ -39,14 +40,16 @@ const useGenericRequest = (delayTime = 1000, initialData) => {
         })
         async function delayFunction(params) {
             try {
+                setData(newRecords)
+
                 await delay(delayTime)
                 
                 if(doneCallback) doneCallback()
-
-                setData(newRecords)
                 
             } catch (error) {
                 console.log(error)
+                if(doneCallback) doneCallback()
+                setData(originalRecords)
             }
         }
         delayFunction();
