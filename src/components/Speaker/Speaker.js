@@ -1,5 +1,6 @@
 import SpeakerDemographics from './SpeakerDemographics'
 import SpeakerImage from './SpeakerImage'
+import SpeakerDelete from './SpeakerDelete'
 import Sessions from './Sessions'
 import {useContext} from 'react'
 import {SpeakerFilterContext} from '../contexts/SpeakerFilterContext'
@@ -21,6 +22,7 @@ const Speaker = ({speaker, updateRecord, insertRecord, deleteRecord}) => {
                 {showSessions === true
                     ? <Sessions/>
                     : null}
+                <SpeakerDelete />    
             </div>
         </SpeakerProvider>
     )

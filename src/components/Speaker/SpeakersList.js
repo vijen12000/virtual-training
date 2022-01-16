@@ -1,5 +1,6 @@
 import {useContext} from 'react'
 import Speaker from './Speaker'
+import SpeakerAdd from './SpeakerAdd'
 import useGenericRequest, {REQUEST_STATUS} from '../hook/useGenericRequest'
 import {data} from '../../SpeakerData'
 import {SpeakerFilterContext} from '../contexts/SpeakerFilterContext'
@@ -18,6 +19,7 @@ const SpeakersList = () => {
 
     return (
         <div className="container speaker-list">
+            <SpeakerAdd eventYear={eventYear} insertRecord={insertRecord} />
             <div className="row">
                 {speakerData
                     .filter(function (speaker) {
