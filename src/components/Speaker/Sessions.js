@@ -1,9 +1,12 @@
 import {useContext} from 'react'
 import Session from './Session'
 import {SpeakerFilterContext} from '../contexts/SpeakerFilterContext'
+import {SpeakerContext} from '../contexts/SpeakerContext'
 
-const Sessions = ({sessions}) => {
+const Sessions = () => {
+    const {speaker} = useContext(SpeakerContext)
     const {eventYear} = useContext(SpeakerFilterContext)
+    const sessions=speaker.sessions
     return (
         <div className="sessionBox card h-250">
             {sessions

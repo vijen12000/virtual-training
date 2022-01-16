@@ -1,4 +1,13 @@
-const SpeakerImage = ({id, first, last}) => {
+import {useContext} from 'react'
+import {SpeakerContext} from '../contexts/SpeakerContext'
+const SpeakerImage = () => {
+    const {
+        speaker: {
+            id,
+            first,
+            last
+        }
+    } = useContext(SpeakerContext)
     return (
         <div
             className="speaker-img d-flex flex-row justify-content-center align-items-center h-300">
@@ -9,5 +18,5 @@ const SpeakerImage = ({id, first, last}) => {
                 width="300"/>
         </div>
     )
-} 
+}
 export default SpeakerImage
