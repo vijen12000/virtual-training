@@ -1,12 +1,11 @@
 import {useContext} from 'react'
 import Speaker from './Speaker'
 import SpeakerAdd from './SpeakerAdd'
-import useGenericRequest, {REQUEST_STATUS} from '../hook/useGenericRequest'
-import {data} from '../../SpeakerData'
+import useRequest, {REQUEST_STATUS} from '../hook/useRequest'
 import {SpeakerFilterContext} from '../contexts/SpeakerFilterContext'
 
 const SpeakersList = () => {
-    const {data: speakerData, requestStatus, error, updateRecord, insertRecord, deleteRecord} = useGenericRequest(2000, data)
+    const {data: speakerData, requestStatus, error, updateRecord, insertRecord, deleteRecord} = useRequest()
     const {searchQuery, eventYear} = useContext(SpeakerFilterContext)
 
     if (requestStatus === REQUEST_STATUS.FAILURE) 
