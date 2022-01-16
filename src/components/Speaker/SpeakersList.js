@@ -5,7 +5,7 @@ import {data} from '../../SpeakerData'
 import {SpeakerFilterContext} from '../contexts/SpeakerFilterContext'
 
 const SpeakersList = () => {
-    const {data: speakerData, requestStatus, error, updateRecord} = useGenericRequest(2000, data)
+    const {data: speakerData, requestStatus, error, updateRecord, insertRecord, deleteRecord} = useGenericRequest(2000, data)
     const {searchQuery, eventYear} = useContext(SpeakerFilterContext)
 
     if (requestStatus === REQUEST_STATUS.FAILURE) 
@@ -32,7 +32,10 @@ const SpeakersList = () => {
                         return (<Speaker
                             key={speaker.id}
                             speaker={speaker}
-                            updateRecord={updateRecord}/>)
+                            updateRecord={updateRecord}
+                            insertRecord={insertRecord}
+                            deleteRecord={deleteRecord}
+                            />)
                     })}
 
             </div>
